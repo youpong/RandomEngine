@@ -8,9 +8,10 @@ public:
     using result_type = unsigned int;
 
 private:
-    unsigned int a = 3;
+    // params from cc65 compiler
+    unsigned int a = 16843009;
     unsigned int x;
-    unsigned int c = 5;
+    unsigned int c = 826366247;
     // int m;
 public:
     RandomEngine(unsigned int seed = 0) : x(seed) {}
