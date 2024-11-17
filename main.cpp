@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 #include <random>
 
 // Linear congruential generator
@@ -24,7 +25,7 @@ public:
     }
     static constexpr result_type max()
     {
-        return UINT_MAX;
+        return std::numeric_limits<unsigned int>::max();
     }
 };
 
