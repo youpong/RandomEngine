@@ -32,4 +32,5 @@ int main() {
   for (auto i = 0; i != 10; ++i) {
     std::cout << d(e) << " ";
   }
+  std::cout << std::endl;
 }

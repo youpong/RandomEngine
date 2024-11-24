@@ -8,5 +8,5 @@ clean:
 	rm -f $(TARGET)
 check: $(TARGET)
 	./$(TARGET)
-
+	@echo "*** Test passed. ***"
 .PHONY: all check clean
