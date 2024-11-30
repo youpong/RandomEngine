@@ -1,8 +1,10 @@
 #!/bin/bash
+# 4 spaces for tab: Using leading tabs in the here document.
 
 set -o nounset
 
 PROJECT=randome_engine
+TARGET=${TARGET:-}
 CXX=clang++
 CXXFLAGS=${CXXFLAGS:-}
 LIBS=${LIBS:-}           
@@ -14,22 +16,24 @@ elif [[ -d "/opt/homebrew/opt/gnu-getopt/bin" ]]; then
 fi
 
 function show_usage {
-    cat <<-EOF
+    cat <<-EOF # ignore leading tabs
 	\`$0' configures $PROJECT to adapt to many kinds of systems.
 
 	Usage: $0 [OPTION]...
 
 	Options:
-	  -h, --help              display this help and exit.
-	  --with-cxx=CXX          use CXX to compile (default=gcc).
-      --with-cxx-standard-library={libstdc++,libc++}
-                              specify C++ standard library
-      
+	  -h, --help              display this help and exit
+	  --build=BUILD           configure for building on BUILD
+	  --with-cxx=CXX          use CXX to compile (default=gcc)
+	  --with-cxx-standard-library={libstdc++,libc++}
+	                          specify C++ standard library
+
 	Some influential environment variables:
 	  CXX       C++ compiler command
 	  CXXFLAGS  C++ compiler flags
 	  LIBS      libraries to pass to the linker, e.g. -l<library>
-EOF
+	EOF
+
     exit $1
 }
 
@@ -40,7 +44,7 @@ EOF
 help_option=0
 
 parsed_arguments=$(getopt -n $0 -o hv \
-                   --long help,with-cxx:,with-cxx-standard-library: -- "$@")
+    --long help,build:,with-cxx:,with-cxx-standard-library: -- "$@")
 if [[ $? != 0 ]]; then
     show_usage 1
 fi
@@ -49,6 +53,7 @@ eval set -- "$parsed_arguments"
 while true; do
     case "$1" in
         -h | --help     ) help_option=1                 ; shift   ;;
+             --build    ) build="$2"                    ; shift   ;;
              --with-cxx ) CXX="$2"                      ; shift 2 ;;
              --with-cxx-standard-library )
                           with_cxx_standard_library="$2"; shift 2 ;;
