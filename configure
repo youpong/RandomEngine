@@ -1,0 +1,81 @@
+#!/bin/bash
+
+set -o nounset
+
+PROJECT=randome_engine
+CXX=clang++
+CXXFLAGS=${CXXFLAGS:-}
+LIBS=${LIBS:-}           
+
+if [[ -d "/usr/local/opt/gnu-getopt/bin" ]]; then
+    PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+elif [[ -d "/opt/homebrew/opt/gnu-getopt/bin" ]]; then
+    PATH="/opt/homebrew/opt/gnu-getopt/bin:$PATH"
+fi
+
+function show_usage {
+    cat <<-EOF
+	\`$0' configures $PROJECT to adapt to many kinds of systems.
+
+	Usage: $0 [OPTION]...
+
+	Options:
+	  -h, --help              display this help and exit.
+	  --with-cxx=CXX          use CXX to compile (default=gcc).
+      --with-cxx-standard-library={libstdc++,libc++}
+                              specify C++ standard library
+      
+	Some influential environment variables:
+	  CXX       C++ compiler command
+	  CXXFLAGS  C++ compiler flags
+	  LIBS      libraries to pass to the linker, e.g. -l<library>
+EOF
+    exit $1
+}
+
+#
+# parse options
+#
+
+help_option=0
+
+parsed_arguments=$(getopt -n $0 -o hv \
+                   --long help,with-cxx:,with-cxx-standard-library: -- "$@")
+if [[ $? != 0 ]]; then
+    show_usage 1
+fi
+
+eval set -- "$parsed_arguments"
+while true; do
+    case "$1" in
+        -h | --help     ) help_option=1                 ; shift   ;;
+             --with-cxx ) CXX="$2"                      ; shift 2 ;;
+             --with-cxx-standard-library )
+                          with_cxx_standard_library="$2"; shift 2 ;;
+        --) shift; break;;
+        *) echo "Error: Unknown option: $1"
+           show_usage 1;;
+    esac
+done
+
+if [[ $# -ne 0 ]]; then
+    echo "Error: Invalid argument: $@"
+    show_usage 1
+fi
+
+#
+# main process
+#
+
+if [[ $help_option == 1 ]]; then
+   show_usage 0
+fi
+
+for f in Makefile
+do
+    echo "creating $f"
+    sed -e "s/@CXX@/${CXX}/g" \
+        -e "s/@CXXFLAGS@/${CXXFLAGS}/g" \
+        -e "s/@LIBS@/${LIBS}/g" \
+        "$f.in" > "$f"
+done
