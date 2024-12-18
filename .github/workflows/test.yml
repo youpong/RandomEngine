@@ -15,9 +15,12 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        os: [ windows-latest ]
+        os: [ ubuntu-latest, macos-latest ]
+        cxx: [ g++, clang++ ]
+        stdlib: [ libstdc++, libc++ ]
     runs-on: ${{ matrix.os }}
     steps:
+    - name: gcc   
     - uses: actions/checkout@v4
     - name: configure
       run: ./configure

@@ -1,5 +1,5 @@
-CXX = clang++
-CXXFLAGS = -v -g -std=c++20 -O0 -Wall -Wextra --pedantic-errors# -stdlib=libc++
+CXX = @CXX@
+CXXFLAGS = @CXXFLAGS@
 
 TARGET = main
 
@@ -9,4 +9,5 @@ clean:
 check: $(TARGET)
 	./$(TARGET)
 	@echo "*** Test passed. ***"
+
 .PHONY: all check clean
