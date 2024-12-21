@@ -7,10 +7,12 @@ SRCS = main.cpp
 all: $(TARGET)
 clean:
 	rm -f $(TARGET)
+run: $(TARGET)
+	./$(TARGET)
 check: $(TARGET)
 	./$(TARGET)
 	@echo "*** Test passed. ***"
 format:
 	$(FORMATTER) $(SRCS)
 
-.PHONY: all check clean format
+.PHONY: all check run clean format

@@ -1,49 +1,57 @@
-# README
+# RandomEngine
 
-乱数生成器を独自に実装し、標準の乱数分布と組み合わせて使用する方法を実践的に説明する。
+乱数生成器をカスタム実装し、標準の乱数分布 std::uniform_int_distribution と組み合わせて使用する方法を実践的に説明する。
 
-* Requisite
+## Requisite
 
 written in C++20, you will need a recent version of a C++ compiler and C++ standard 
 library. 
 
-# Tested Environment
+## Tested Environment
 
-macOS と Linux でテストしている。より詳細には以下の通り。
+We are testing in the following environments:
 
-* macOS 15.1
-* Xcode 16.1
-
+* macOS 15.2
+  * Xcode 16.2 (using the bundled Apple Clang 16.0.0)
 * Ubuntu 24.04.1 LTS
-* gcc 13.2.0
-* clang 18.1.3
+  * GCC 13.3.0
+  * Clang 18.1.3
 
-## Build
+## How to Build
 
 ```
 $ make main
 ```
 
-## Run
+## How to Test
 
 10 回サイコロを振った際の出目を表示する。
 
 ```
-$ ./main
+$ make run
 ```
 
+## Setting Up a Docker Environment for Build/Test
 
-# Docker
+This project supports building and testing within a Docker container. The process mirrors the standard
+build/test procedure, ensuring consistency across environments.
 
-## Build Docker image `random`
+### Key Points
+- The Docker image is based on `Ubuntu`.
+- Building and testing inside the container follow the same steps as running directly on a native system.
+
+### Steps
+
+#### Build Docker image `rnd`
 
 ```
-$ docker build -t random .
+$ docker build -t rnd .
 ```
 
-## Create and run a new container from an image
+#### Create and run a new container from an image
+
 ```
-$ docker run --rm -it -v $PWD:/random -w /random random 
+$ docker run --rm -it -v $PWD:/rnd -w /rnd rnd
 ```
 
 # References
