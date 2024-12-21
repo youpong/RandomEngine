@@ -1,0 +1,13 @@
+CXX = @CXX@
+CXXFLAGS = @CXXFLAGS@
+
+TARGET = main
+
+all: $(TARGET)
+clean:
+	rm -f $(TARGET)
+check: $(TARGET)
+	./$(TARGET)
+	@echo "*** Test passed. ***"
+
+.PHONY: all check clean
