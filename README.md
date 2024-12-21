@@ -54,7 +54,7 @@ $ docker build -t rnd .
 $ docker run --rm -it -v $PWD:/rnd -w /rnd rnd
 ```
 
-# References
+## References
 
 Linear congruential generator を実装する際に、特にパラメタの値について参照した。
 
@@ -62,3 +62,7 @@ Linear congruential generator
 Wikipedia
 
 https://en.wikipedia.org/wiki/Linear_congruential_generator#cite_note-LEcuyer99-10
+
+## LICENSE
+
+MIT
