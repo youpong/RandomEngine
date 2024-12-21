@@ -1,7 +1,8 @@
-CXX = clang++
-CXXFLAGS = -v -g -std=c++20 -O0 -Wall -Wextra --pedantic-errors# -stdlib=libc++
+FORMATTER = clang-format -i
+CXXFLAGS = -g -std=c++20 -O0 -Wall -Wextra --pedantic-errors
 
 TARGET = main
+SRCS = main.cpp
 
 all: $(TARGET)
 clean:
@@ -9,4 +10,7 @@ clean:
 check: $(TARGET)
 	./$(TARGET)
 	@echo "*** Test passed. ***"
-.PHONY: all check clean
+format:
+	$(FORMATTER) $(SRCS)
+
+.PHONY: all check clean format
