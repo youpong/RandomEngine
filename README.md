@@ -1,6 +1,7 @@
 # RandomEngine
 
-乱数生成器をカスタム実装し、標準の乱数分布 std::uniform_int_distribution と組み合わせて使用する方法を実践的に説明する。
+Provides a practical demonstration of how to implement a custom random number
+generator and use it in conjunction with the standard `std::uniform_int_distribution`.
 
 ## Requisite
 
@@ -23,22 +24,23 @@ We are testing in the following environments:
 $ make main
 ```
 
-## How to Test
+## How to Run
 
-10 回サイコロを振った際の出目を表示する。
+Displays the results of rolling the dice 10 times.
 
 ```
 $ make run
 ```
 
-## Setting Up a Docker Environment for Build/Test
+## Setting Up a Docker Environment for Build/Run
 
-This project supports building and testing within a Docker container. The process mirrors the standard
-build/test procedure, ensuring consistency across environments.
+This project supports building and testing within a Docker container. The
+process mirrors the standard procedure, ensuring consistency across environments.
 
 ### Key Points
 - The Docker image is based on `Ubuntu`.
-- Building and testing inside the container follow the same steps as running directly on a native system.
+- Building and testing inside the container follow the same steps as running 
+  directly on a native system.
 
 ### Steps
 
@@ -56,12 +58,9 @@ $ docker run --rm -it -v $PWD:/rnd -w /rnd rnd
 
 ## References
 
-Linear congruential generator を実装する際に、特にパラメタの値について参照した。
+Reference was made to the parameters.
 
-Linear congruential generator
-Wikipedia
-
-https://en.wikipedia.org/wiki/Linear_congruential_generator#cite_note-LEcuyer99-10
+* "Linear congruential generator." *Wikipedia*. 2024. [https://en.wikipedia.org/wiki/Linear_congruential_generator#cite_note-LEcuyer99-10](https://en.wikipedia.org/wiki/Linear_congruential_generator#cite_note-LEcuyer99-10).
 
 ## LICENSE
 
