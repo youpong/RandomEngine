@@ -58,9 +58,9 @@ $ docker run --rm -it -v $PWD:/rnd -w /rnd rnd
 
 ## References
 
-Reference was made to the parameters.
-
 * "Linear congruential generator." *Wikipedia*. 2024. [https://en.wikipedia.org/wiki/Linear_congruential_generator#cite_note-LEcuyer99-10](https://en.wikipedia.org/wiki/Linear_congruential_generator#cite_note-LEcuyer99-10).
+
+* 江添亮. *江添亮のC++入門*. ドワンゴ, 2019, Kindle版, 39.3 乱数分布.
 
 ## LICENSE
 
