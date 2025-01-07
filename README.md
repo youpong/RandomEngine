@@ -2,6 +2,7 @@
 
 Provides a practical demonstration of how to implement a custom random number
 generator and use it in conjunction with the standard `std::uniform_int_distribution`.
+This also includes a Dockerfile for building a docker environment.
 
 ## Requisite
 
