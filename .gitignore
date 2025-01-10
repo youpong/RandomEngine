@@ -1,3 +1,4 @@
 main
 Info.plist
 main.yml
+*.o
