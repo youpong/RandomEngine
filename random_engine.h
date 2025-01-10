@@ -32,8 +32,4 @@ concept Engine = requires(T t) {
 };
 
 template <typename Engine>
-auto random_engine_requires(Engine &e) {
-    e.min();
-    e.max();
-    e();
-}
+auto random_engine_requires(Engine &) {}
