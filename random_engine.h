@@ -1,3 +1,4 @@
+#include <concepts>
 #include <limits>
 
 // implemented by Linear congruential generator
@@ -22,3 +23,16 @@ public:
     return std::numeric_limits<unsigned int>::max();
   }
 };
+
+template <typename T>
+concept Engine = requires(T t) {
+  { t.min() } -> std::convertible_to<typename T::result_type>;
+  { t.max() } -> std::convertible_to<typename T::result_type>;
+  { t() } -> std::convertible_to<typename T::result_type>;
+};
+
+template <typename Engine> auto random_engine_requires(Engine &e) {
+  e.min();
+  e.max();
+  e();
+}

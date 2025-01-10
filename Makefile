@@ -14,7 +14,7 @@ check: $(TARGET)
 	./$(TARGET)
 	@echo "*** Test passed. ***"
 format:
-	$(FORMATTER) $(SRCS)
+	$(FORMATTER) $(SRCS) *.h
 
 $(TARGET): $(OBJS)
 	$(CXX) -o $@ $^
